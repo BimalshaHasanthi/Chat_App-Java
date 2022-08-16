@@ -8,21 +8,21 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="605.0" prefWidth="349.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginFormController">
+<AnchorPane fx:id="mainContext" prefHeight="605.0" prefWidth="349.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginFormController">
    <children>
-      <AnchorPane prefHeight="605.0" prefWidth="349.0" style="-fx-background-color: white;">
+      <AnchorPane fx:id="loginContext" prefHeight="605.0" prefWidth="349.0" style="-fx-background-color: white;">
          <children>
-            <Button layoutX="108.0" layoutY="431.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="136.0" style="-fx-background-color: #007aff; -fx-background-radius: 50;" text="Login" textFill="WHITE">
+            <Button fx:id="btnLogin" layoutX="108.0" layoutY="431.0" mnemonicParsing="false" onAction="#loginOnAction" prefHeight="35.0" prefWidth="136.0" style="-fx-background-color: #007aff; -fx-background-radius: 50;" text="Login" textFill="WHITE">
                <font>
                   <Font size="15.0" />
                </font>
             </Button>
-            <TextField layoutX="56.0" layoutY="293.0" prefHeight="35.0" prefWidth="235.0" promptText="User Name">
+            <TextField fx:id="txtUserName" layoutX="56.0" layoutY="293.0" prefHeight="35.0" prefWidth="235.0" promptText="User Name">
                <font>
                   <Font size="15.0" />
                </font>
             </TextField>
-            <TextField layoutX="57.0" layoutY="353.0" prefHeight="35.0" prefWidth="235.0" promptText="Password">
+            <TextField fx:id="txtPassword" layoutX="57.0" layoutY="353.0" prefHeight="35.0" prefWidth="235.0" promptText="Password">
                <font>
                   <Font size="15.0" />
                </font>
