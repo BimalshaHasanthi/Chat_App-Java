@@ -18,8 +18,20 @@ public class LoginFormController {
     public AnchorPane loginContext;
 
     public void loginOnAction(ActionEvent actionEvent) throws IOException {
-        if(txtUserName.getText()=="client"){
+        if(txtUserName.getText().equals("client")){
             URL resource = getClass().getResource("../views/ClientForm.fxml");
+            Parent load = FXMLLoader.load(resource);
+            loginContext.getChildren().clear();
+            loginContext.getChildren().add(load);
+            txtUserName.clear();
+        }else if(txtUserName.getText().equals("server")){
+            URL resource = getClass().getResource("../views/ServerForm.fxml");
+            Parent load = FXMLLoader.load(resource);
+            loginContext.getChildren().clear();
+            loginContext.getChildren().add(load);
+            txtUserName.clear();
+        }else{
+            URL resource = getClass().getResource("../views/LoginForm.fxml");
             Parent load = FXMLLoader.load(resource);
             loginContext.getChildren().clear();
             loginContext.getChildren().add(load);
