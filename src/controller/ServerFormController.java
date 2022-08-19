@@ -21,7 +21,7 @@ public class ServerFormController {
                 ServerSocket serverSocket=new ServerSocket(5000);
                 System.out.println("Server Started");
                 accept = serverSocket.accept();
-                System.out.println("Client connected");
+                System.out.println("Server connected");
 
                 InputStreamReader inputStreamReader=new InputStreamReader(accept.getInputStream());
                 BufferedReader bufferedReader=new BufferedReader(inputStreamReader);
