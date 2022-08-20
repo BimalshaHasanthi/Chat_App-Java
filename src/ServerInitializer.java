@@ -22,7 +22,7 @@ private static ArrayList<ClientHandler> clientHandlers = new ArrayList<>();
 
 
     public static void main(String[] args) throws IOException {
-        ServerSocket serverSocket = new ServerSocket(50004);
+        ServerSocket serverSocket = new ServerSocket(50006);
         Socket accept;
 
         while (true) {

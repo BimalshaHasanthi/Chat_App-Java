@@ -53,7 +53,7 @@ public class ClientFormController extends Thread{
 //        lblUser.setText("Client1");
 
         try {
-            socket = new Socket("localhost", 10002);
+            socket = new Socket("localhost", 50006);
             bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             printWriter = new PrintWriter(socket.getOutputStream(), true);
             this.start();
@@ -62,12 +62,12 @@ public class ClientFormController extends Thread{
             e.printStackTrace();
         }
 
-
-        for (int i = 0; i < imageList.length; i++) {
-            imageList[i] = "asserts/" + (i + 1) + ".png";
-            //System.out.println(ePath[i]);
-
-        }
+//
+//        for (int i = 0; i < imageList.length; i++) {
+//            imageList[i] = "asserts/" + (i + 1) + ".png";
+//            //System.out.println(ePath[i]);
+//
+//        }
 
     }
 
@@ -165,7 +165,7 @@ public class ClientFormController extends Thread{
                     }
 
                     tempTextFlow.getChildren().add(text);
-                    tempTextFlow.setMaxWidth(200);
+                    tempTextFlow.setMaxWidth(428);
 
                     TextFlow textFlow = new TextFlow(tempTextFlow);
                     HBox hBox = new HBox(10);

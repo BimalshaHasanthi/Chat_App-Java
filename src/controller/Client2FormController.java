@@ -2,6 +2,7 @@ package controller;
 
 import com.jfoenix.controls.JFXTextField;
 import javafx.application.Platform;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -14,11 +15,15 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import javax.imageio.ImageIO;
+import javax.imageio.stream.ImageInputStream;
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
@@ -49,7 +54,7 @@ public class Client2FormController extends Thread{
 //        lblUser.setText("Client1");
 
         try {
-            socket = new Socket("localhost", 10002);
+            socket = new Socket("localhost", 50006);
             bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             printWriter = new PrintWriter(socket.getOutputStream(), true);
             this.start();
@@ -58,11 +63,11 @@ public class Client2FormController extends Thread{
             e.printStackTrace();
         }
 
-        for (int i = 0; i < imageList.length; i++) {
-            imageList[i] = "asserts/" + (i + 1) + ".png";
-            //System.out.println(ePath[i]);
-
-        }
+//        for (int i = 0; i < imageList.length; i++) {
+//            imageList[i] = "asserts/" + (i + 1) + ".png";
+//            //System.out.println(ePath[i]);
+//
+//        }
 
     }
 
@@ -77,22 +82,8 @@ public class Client2FormController extends Thread{
         }
     }
 
-    public void sendFileClicked(MouseEvent mouseEvent) {
-        Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
-        chooser = new FileChooser();
-        chooser.setTitle("Open Image");
-        this.path = chooser.showOpenDialog(stage);
-        printWriter.println(lblClient2.getText() + ": " +"img " + path.getPath());
-        printWriter.flush();
-    }
+    public boolean saveControl = false;
 
-    public void openEmojiPaneOnAction(MouseEvent mouseEvent) {
-        if (!emojiPaneContext.isVisible()) {
-            emojiPaneContext.setVisible(true);
-        } else {
-            emojiPaneContext.setVisible(false);
-        }
-    }
 
     public void run() {
         try {
@@ -141,7 +132,7 @@ public class Client2FormController extends Thread{
                         hBox.getChildren().add(text1);
                         hBox.getChildren().add(imageView);
                     } else {
-                        hBox.setAlignment(Pos.BOTTOM_RIGHT);
+                        hBox.setAlignment(Pos.BOTTOM_LEFT);
                         hBox.getChildren().add(imageView);
                         Text text1 = new Text(": Me ");
                         hBox.getChildren().add(text1);
@@ -159,7 +150,7 @@ public class Client2FormController extends Thread{
                     }
 
                     tempTextFlow.getChildren().add(text);
-                    tempTextFlow.setMaxWidth(200);
+                    tempTextFlow.setMaxWidth(400); ////////////////////////////////////////////////////////////////////////////
 
                     TextFlow textFlow = new TextFlow(tempTextFlow);
                     HBox hBox = new HBox(10);
@@ -171,7 +162,7 @@ public class Client2FormController extends Thread{
                     } else {
                         Text text1 = new Text(clientMassage + ": Me");
                         TextFlow textFlow1 = new TextFlow(text1);
-                        hBox.setAlignment(Pos.BOTTOM_RIGHT);
+                        hBox.setAlignment(Pos.BOTTOM_LEFT);
                         hBox.getChildren().add(textFlow1);
                     }
                     Platform.runLater(() -> vBox.getChildren().addAll(hBox));
@@ -179,6 +170,26 @@ public class Client2FormController extends Thread{
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    public void sendFileClicked(MouseEvent mouseEvent){
+        Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+        chooser = new FileChooser();
+        chooser.setTitle("Open Image");
+        this.path = chooser.showOpenDialog(stage);
+        printWriter.println(lblClient2.getText() + " " + "img" + path.getPath());
+        printWriter.flush();
+
+
+
+    }
+
+    public void openEmojiPaneOnAction(MouseEvent mouseEvent) {
+        if (!emojiPaneContext.isVisible()) {
+            emojiPaneContext.setVisible(true);
+        } else {
+            emojiPaneContext.setVisible(false);
         }
     }
 
